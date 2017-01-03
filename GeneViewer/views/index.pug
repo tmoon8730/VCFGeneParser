@@ -1,0 +1,19 @@
+html
+  head
+    title= title
+  body
+    h1= message
+    - if (docs.length)
+      each gene in docs
+        p #{gene.gene_id}
+    - else
+      p No genes are in the database!
+    form(name="add-estimation", method="post")
+        div.input
+            span.label Title
+            input(type="text", name="title")
+        div.input
+            span.label Description
+            textarea(name="description", cols="40", rows="5")
+        div.actions
+            input(type="submit", value="add")
