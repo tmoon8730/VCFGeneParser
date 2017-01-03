@@ -3,17 +3,17 @@ html
     title= title
   body
     h1= message
-    - if (docs.length)
-      each gene in docs
-        p #{gene.gene_id}
-    - else
-      p No genes are in the database!
-    form(name="add-estimation", method="post")
+    form(name="add-estimation",action="/", method="post")
         div.input
-            span.label Title
-            input(type="text", name="title")
-        div.input
-            span.label Description
-            textarea(name="description", cols="40", rows="5")
+            span.label Gene Id:
+            input(type="text", name="gene_id")
         div.actions
             input(type="submit", value="add")
+    hr
+    span.label Gene Id:
+    p= geneId
+    span.label Chrom Number:
+    p= chrom
+    span.label Pos:
+    p= pos
+    hr

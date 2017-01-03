@@ -2,6 +2,8 @@ var express = require('express');
 var app = express()
 app.set('view engine', 'pug');
 var router = express.Router();
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:true}));
 /* Set up the MongoDB Database connection */
 var mongoose = require('mongoose');
 var url = 'mongodb://localhost:27017/gene_database';
@@ -25,17 +27,19 @@ var Gene = mongoose.model('Gene', Gene);
 app.get('/', function(req, res){
 	Gene.find({}, function(err, docs){
 		console.log('Docs = ' + JSON.stringify(docs))
-		res.render('index', {title:'Hey', message: 'Hello there!', docs: docs});
+		res.render('index', {title:'Hey', message: 'Hello there!', geneId: 'n/a', chrom: 'n/a', pos: 'n/a'});
 	});
 });
-app.get('/:gene_id', function(req, res){
-	res.render('index', {title:'DIFF', message:'You entered: ' + req.params.gene_id, docs: {"gene_id":req.params.gene_id}});
-});
 
-app.post('/signup', function(req, res){
-	console.log(req.body.title);
-	console.log(req.body.description);
-	res.send('Post page');
+app.post('/', function(req, res){
+	console.log(req.body.gene_id);
+	Gene.findOne({gene_id: req.body.gene_id}, function(err, gene){
+		if(err){
+			res.render('index', {title:'Hey', message: "Did not find a Gene for " + req.body.gene_id, geneId: 'n/a', chrom: 'n/a', pos: 'n/a'});
+		}
+		console.log("found id %s", gene.gene_id);
+		res.render('index', {title:'Hey', message: "Found a Gene for " + gene.gene_id, geneId: gene.gene_id, chrom: gene.chrom, pos: gene.pos});
+	})
 });
 /*var MongoClient = require('mongodb').MongoClient;
 
