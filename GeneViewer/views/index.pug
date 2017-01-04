@@ -1,19 +1,70 @@
 html
   head
     title= title
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    style(type='text/css').
+      body{
+        background-color:#594F4F;
+        color:#E5FCC2;
+        margin: 20px;
+      }
+      .label{
+        color:#E5FCC2;
+        font-size: 18px;
+      }
+      .content{
+        border: 2px solid #9DE0AD;
+        background-color:#45ADA8;
+        color:#594F4F;
+        padding: 10px;
+      }
+      hr{
+        border-color: #E5FCC2;
+        background-color: #E5FCC2;
+        color: #E5FCC2;
+      }
+
   body
-    h1= message
-    form(name="add-estimation",action="/", method="post")
-        div.input
+    div.row
+      div.col-md-3
+        form(name="add-estimation",action="/", method="post")
+          div.input
             span.label Gene Id:
-            input(type="text", name="gene_id")
-        div.actions
-            input(type="submit", value="add")
-    hr
-    span.label Gene Id:
-    p= geneId
-    span.label Chrom Number:
-    p= chrom
-    span.label Pos:
-    p= pos
-    hr
+            input(type="text", name="gene_id", style="color:#594F4F")
+            input(class="btn btn-success" type="submit", value="Search" style="margin:10px;")
+      div.col-md-6
+        h1(style="text-align: center; color: ") VCF Gene Viewer
+        hr
+        h3= message
+        div.content
+          div.row
+            div.col-md-6
+              h4 Gene Id:
+            div.col-md-6
+              h4= geneId
+          div.row
+            div.col-md-6
+              h4 Reference:
+            div.col-md-6
+              h4= ref
+          div.row
+            div.col-md-6
+              h4 Alt:
+            div.col-md-6
+              h4= alt
+          div.row
+            div.col-md-6
+              h4 Chrom Number:
+            div.col-md-6
+              h4= chrom
+          div.row
+            div.col-md-6
+              h4 Pos:
+            div.col-md-6
+              h4= pos
+        hr
+      div.col-md-3
+    div.row
+      div.col-md-5
+        p &copy; 2017 by Tyler Moon
+      div.col-md-7
