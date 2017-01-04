@@ -1,0 +1,11 @@
+{
+  "name":"geneviewer",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "express": "~4.14.0",
+    "mongoose": "~4.7.6",
+    "assert": "~1.4.1"
+  }
+}
