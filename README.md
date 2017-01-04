@@ -4,9 +4,19 @@ This is a simple project for parsing VCF files with gene information with a Pyth
 
 ## Installation
 
-
+The first step to installing this project is to clone this repository from [GitHub](https://github.com/tmoon8730/VCFGeneParser). Then install the dependencies for the NodeJS website by changing to the GeneViewer directory with `cd GeneViewer` and then run `npm install`. Also a [MongoDB database](https://www.mongodb.com/) is needed for this project. After downloading install the database and run it with the default setup.
 
 ## Usage
+There are three parts to the project: the Python vcf file script, and the NodeJS Express website, and the MongoDB database
+
+### VCF Python Script
+The `vcf.py` file is used to parse the vcf file into the MongoDB database. First make sure the MongoDB database is up and running. Then use the command `python vcf.py -i <inputfile>` where the `<inputfile>` is the filename of the vcf file.
+
+### NodeJS Express Website
+The NodeJS Express site is located in the GeneViewer directory. To start the server either run `node server.js` from the GeneViewer directory or run `./VCFGeneParser.sh` from the project root directory. The server will be up and running at `127.0.0.1:8888`
+
+### MongoDB Database
+The MongoDB Database can be started by using `mongod` and the database will be saved in the default file location in `/var/data/`
 
 ## Contributing
 
